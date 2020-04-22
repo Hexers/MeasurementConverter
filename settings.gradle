@@ -1,0 +1,2 @@
+rootProject.name='Measurement Converter'
+include ':app'
