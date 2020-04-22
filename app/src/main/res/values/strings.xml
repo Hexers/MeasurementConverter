@@ -34,4 +34,11 @@
 
     <string name="game_messages_label"> </string>
     <string name="versus">vs.</string>
+
+    <string name="ConversionTitle">Conversion</string>
+    <string name="MilesTitle">Miles</string>
+    <string name="KilometersTitle">Kilometers</string>
+
+    <string name="MilesValue"> </string>
+    <string name="KilometersValue"> </string>
 </resources>
