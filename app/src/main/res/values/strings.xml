@@ -38,9 +38,13 @@
     <string name="ConversionTitle">Conversion</string>
     <string name="MilesTitle">Miles</string>
     <string name="KilometersTitle">Kilometers</string>
+    <string name="InchTitle">Inches</string>
+    <string name="CentTitle">Centimeters</string>
 
     <string name="MilesValue"> </string>
     <string name="KilometersValue"> </string>
+    <string name="InchValue"> </string>
+    <string name="CentValue"> </string>
 
     <string-array name="split_array">
         <item>Miles to Kilometers</item>

@@ -19,6 +19,7 @@
         android:textStyle="bold"
         android:textSize="20sp" />
 
+    <!-- Spinner-->
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +58,37 @@
         android:textStyle="bold"
         android:textSize="20sp" />
 
+    <!-- Inches-->
+    <TextView
+        android:id="@+id/InchTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MilesTextView"
+        android:layout_marginTop="20dp"
+        android:gravity="top|center_vertical|center_horizontal"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/InchTitle"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <!--Centimeters -->
+    <TextView
+        android:id="@+id/CentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MilesTextView"
+        android:layout_marginTop="20dp"
+        android:gravity="top|center_vertical|center_horizontal"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/CentTitle"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <!-- Miles-->
     <EditText
         android:id="@+id/MilesValueEditText"
         android:layout_width="wrap_content"
@@ -68,6 +100,7 @@
         android:text="@string/MilesValue"
         android:textSize="20sp" />
 
+    <!--Kilometers -->
     <EditText
         android:id="@+id/KilometersValueEditText"
         android:layout_width="wrap_content"
@@ -77,6 +110,30 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/KilometersValue"
+        android:textSize="20sp" />
+
+    <!-- Inches-->
+    <EditText
+        android:id="@+id/InchValueEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/KilometersTextView"
+        android:layout_toRightOf="@+id/KilometersTextView"
+        android:ems="8"
+        android:inputType="numberDecimal"
+        android:text="@string/InchValue"
+        android:textSize="20sp" />
+
+    <!-- Centimeters-->
+    <EditText
+        android:id="@+id/CentValueEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/KilometersTextView"
+        android:layout_toRightOf="@+id/KilometersTextView"
+        android:ems="8"
+        android:inputType="numberDecimal"
+        android:text="@string/CentValue"
         android:textSize="20sp" />
 
     <!-- New Game-->

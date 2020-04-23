@@ -31,18 +31,36 @@ public class MainActivity extends Activity
     // Measurement Converter
     // Define variables for the widgets
     private TextView ConversionTextView;
-    private TextView MileTextView;
-    private TextView KilometersTextView;
-    private EditText MilesValueEditText;
-    private EditText KilometersValueEditText;
     private Spinner splitSpinner;
 
-    // define instance variables that should be saved
+    private TextView MileTextView;
+    private TextView KilometersTextView;
+    private TextView InchTextView;
+    private TextView CentTextView;
 
+    private EditText MilesValueEditText;
+    private EditText KilometersValueEditText;
+    private EditText InchValueEditText;
+    private EditText CentValueEditText;
+
+
+    // define instance variables that should be saved
+    private String milesToKiloVar = "";
+    private String kiloToMileVar = "";
+    private String inchToCentVar = "";
+    private String centToInchVar = "";
+
+    private String mileString = "";
+    private String kilometerString = "";
+    private String inchString = "";
+    private String centimeterString = "";
+
+    //private String billAmountString = "";
+    //private float tipPercent = .15f;
 
     // set up preferences
     private SharedPreferences prefs;
-
+    private SharedPreferences savedValues;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,11 +69,18 @@ public class MainActivity extends Activity
 
         // get references to the widgets
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
+        splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
+
         MileTextView = (TextView) findViewById(R.id.MilesTextView);
         KilometersTextView = (TextView) findViewById(R.id.KilometersTextView);
+        InchTextView = (TextView) findViewById(R.id.InchTextView);
+        CentTextView = (TextView) findViewById(R.id.CentTextView);
+
+
         MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
         KilometersTextView = (EditText) findViewById(R.id.KilometersValueEditText);
-        splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
+
+
 
         //set array adapter for a spinner
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(
@@ -66,6 +91,13 @@ public class MainActivity extends Activity
 
         // set the listeners
         //newGameButton.setOnClickListener(this);
+        MilesValueEditText.setOnEditorActionListener(this);
+        KilometersValueEditText.setOnEditorActionListener(this);
+        InchValueEditText.setOnEditorActionListener(this);
+        CentValueEditText.setOnEditorActionListener(this);
+
+        // get SharedPreferences object
+        savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
 
         // set the default values for the preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -95,6 +127,18 @@ public class MainActivity extends Activity
     public void onResume() {
         super.onResume();
 
+        // get the instance variables
+        milesToKiloVar = savedValues.getString("MilesValueEditText", "");
+        kiloToMileVar = savedValues.getString("KilometersValueEditText", "");
+        inchToCentVar = savedValues.getString("InchValueEditText", "");
+        centToInchVar = savedValues.getString("CentValueEditText", "");
+
+        // set the amount on its widget
+        MilesValueEditText.setText(milesToKiloVar);
+        KilometersValueEditText.setText(kiloToMileVar);
+        InchValueEditText.setText(inchToCentVar);
+        CentValueEditText.setText(centToInchVar);
+
         // get name for player one
         String playerOneName = prefs.getString("player_one_name", "");
         //namePlayerOneTextView.setText(playerOneName);
@@ -122,6 +166,9 @@ public class MainActivity extends Activity
         float perPersonAmount = 0;
         if (split == 1)
         {
+            ConversionTextView.setVisibility(View.GONE);
+            MilesValueEditText.setVisibility(View.GONE);
+            KilometersTextView.setVisibility(View.GONE);
             //perPersonLabel.setVisibility(View.GONE);
             //perPersonTextView.setVisibility(View.GONE);
         }
