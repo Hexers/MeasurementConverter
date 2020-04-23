@@ -41,4 +41,11 @@
 
     <string name="MilesValue"> </string>
     <string name="KilometersValue"> </string>
+
+    <string-array name="split_array">
+        <item>Miles to Kilometers</item>
+        <item>Kilometers to Miles</item>
+        <item>Inches to Centimeters</item>
+        <item>Centimeters to Inches</item>
+    </string-array>
 </resources>

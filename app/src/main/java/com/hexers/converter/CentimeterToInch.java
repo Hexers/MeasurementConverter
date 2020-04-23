@@ -25,7 +25,7 @@ import android.content.SharedPreferences.Editor;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends Activity
+public class CentimeterToInch extends Activity
         implements OnEditorActionListener, OnClickListener {
 
     // Measurement Converter
@@ -47,7 +47,7 @@ public class MainActivity extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.centimeters_to_inches);
 
         // get references to the widgets
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
@@ -153,7 +153,7 @@ public class MainActivity extends Activity
 
             case R.id.newGameButton:
                 // Reloads MainActivity class
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                startActivity(new Intent(CentimeterToInch.this, CentimeterToInch.class));
         }
     }
 
