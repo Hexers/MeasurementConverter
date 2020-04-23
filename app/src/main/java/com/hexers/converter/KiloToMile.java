@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,11 +23,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 public class KiloToMile extends Activity
-        implements OnEditorActionListener, OnClickListener {
+        implements OnEditorActionListener, OnClickListener, AdapterView.OnItemSelectedListener  {
 
     // Measurement Converter
     // Define variables for the widgets
@@ -67,7 +69,7 @@ public class KiloToMile extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.kilometers_to_miles);
 
         // get references to the widgets
 
@@ -76,15 +78,14 @@ public class KiloToMile extends Activity
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
 
+
         MileTextView = (TextView) findViewById(R.id.MilesTextView);
         KilometersTextView = (TextView) findViewById(R.id.KilometersTextView);
-
-        MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
-        KilometersValueEditText = (EditText) findViewById(R.id.KilometersValueEditText);
-
         InchTextView = (TextView) findViewById(R.id.InchTextView);
         CentTextView = (TextView) findViewById(R.id.CentTextView);
 
+        MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
+        KilometersValueEditText = (EditText) findViewById(R.id.KilometersValueEditText);
         InchValueEditText = (EditText) findViewById(R.id.InchValueEditText);
         CentValueEditText = (EditText) findViewById(R.id.CentValueEditText);
 
@@ -95,13 +96,16 @@ public class KiloToMile extends Activity
         splitSpinner.setAdapter(adapter);
 
 
-        // set the listeners
-
+        // Set the listeners for buttons & EditText's
         newGameButton.setOnClickListener(this);
         MilesValueEditText.setOnEditorActionListener(this);
         KilometersValueEditText.setOnEditorActionListener(this);
         InchValueEditText.setOnEditorActionListener(this);
         CentValueEditText.setOnEditorActionListener(this);
+
+        // Set the listeners for Spinners
+        splitSpinner.setSelection(2,false); // Sets default selection to null
+        splitSpinner.setOnItemSelectedListener(this);
 
         // get SharedPreferences object
         savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
@@ -217,7 +221,7 @@ public class KiloToMile extends Activity
 
             case R.id.newGameButton:
                 // Reloads MainActivity class
-                startActivity(new Intent(KiloToMile.this, KiloToMile.class));
+                startActivity(new Intent(KiloToMile.this, MainActivity.class));
         }
     }
 
@@ -236,5 +240,96 @@ public class KiloToMile extends Activity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    {
+        /*
+            Toast.makeText(parent.getContext(), "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
+
+         */
+
+        switch (parent.getId())
+        {
+            case R.id.splitSpinner:
+
+                if (position == 0) // Choose a selection
+                {
+                    parent.setClickable(false);
+                }
+
+                if (position == 1) // Miles to Kilometers
+                {
+                    //Do something
+                    Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(KiloToMile.this, MileToKilo.class);
+                    startActivity(intent);
+                }
+
+                if (position == 2) // Kilometers to Miles
+                {
+                    //Do something
+                    Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(KiloToMile.this, KiloToMile.class);
+                    startActivity(intent);
+                }
+                if (position == 3) //Inches to Centimeters
+                {
+                    //Do something
+                    Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(KiloToMile.this, InchToCentimeter.class);
+                    startActivity(intent);
+                }
+                if (position == 4) // Centimeters to Inches
+                {
+                    //Do something
+                    Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(KiloToMile.this, CentimeterToInch.class);
+                    startActivity(intent);
+                }
+                //Do something
+                //Toast.makeText(this, "Conversion Selected: " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+
+                /*
+                parent.setSelection(0); // Choose a Selection
+                parent.setSelection(1); // Miles to Kilometers
+                parent.setSelection(2); // Kilometers to Miles
+                parent.setSelection(3); // Inches to Centimeters
+                parent.setSelection(4); // Centimeters to Inches
+
+                 */
+                /*
+                Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                break;
+                 */
+
+                /*
+                        MilesValueEditText.setText(milesToKiloVar);
+                        KilometersValueEditText.setText(kiloToMileVar);
+                        InchValueEditText.setText(inchToCentVar);
+                        CentValueEditText.setText(centToInchVar);
+                */
+
+                /*
+            case R.id.splitSpinner:
+                //Do another thing
+                Toast.makeText(this, "Option Selected: " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                break;
+
+                 */
+        }
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+        // Sometimes this can be empty
     }
 }
