@@ -23,7 +23,7 @@
     <string name="player_two_name_title">Player Two Settings</string>
     <string name="player_two_name_summary">Sets name for Player Two.</string>
 
-    <string name="new_game">New Game</string>
+    <string name="new_game">Reset</string>
 
     <string name="tile_one_name"> </string>
     <string name="tile_two_name"> </string>

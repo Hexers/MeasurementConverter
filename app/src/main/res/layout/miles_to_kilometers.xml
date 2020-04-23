@@ -72,7 +72,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/InchTitle"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!--Centimeters -->
     <TextView
@@ -87,7 +88,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/CentTitle"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Miles-->
     <EditText
@@ -96,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/MilesTextView"
         android:layout_toRightOf="@+id/MilesTextView"
+        android:layout_below="@+id/ConversionTextView"
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/MilesValue"
@@ -123,7 +126,8 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/InchValue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Centimeters-->
     <EditText
@@ -135,7 +139,8 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/CentValue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- New Game-->
     <Button

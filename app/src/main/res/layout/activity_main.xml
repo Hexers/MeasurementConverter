@@ -41,7 +41,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/MilesTitle"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Kilometers-->
     <TextView
@@ -56,7 +57,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/KilometersTitle"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Inches-->
     <TextView
@@ -71,7 +73,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/InchTitle"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!--Centimeters -->
     <TextView
@@ -86,7 +89,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/CentTitle"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Miles-->
     <EditText
@@ -98,7 +102,8 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/MilesValue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!--Kilometers -->
     <EditText
@@ -110,7 +115,8 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/KilometersValue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Inches-->
     <EditText
@@ -122,7 +128,8 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/InchValue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- Centimeters-->
     <EditText
@@ -134,7 +141,8 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/CentValue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <!-- New Game-->
     <Button
