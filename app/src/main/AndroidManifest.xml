@@ -24,8 +24,25 @@
         </activity>
         <activity
             android:name="com.hexers.converter.AboutActivity"
-            android:label="@string/title_activity_about"
-            android:theme="@style/DialogTheme">
+            android:label="@string/title_activity_about">
+        </activity>
+
+        <!-- New -->
+        <activity
+            android:name="com.hexers.converter.CentimeterToInch"
+            android:label="@string/title_activity_cent_to_inch">
+        </activity>
+        <activity
+            android:name="com.hexers.converter.InchToCentimeter"
+            android:label="@string/title_activity_inch_to_cent">
+        </activity>
+        <activity
+            android:name="com.hexers.converter.KiloToMile"
+            android:label="@string/title_activity_kilo_to_mile">
+        </activity>
+        <activity
+            android:name="com.hexers.converter.MileToKilo"
+            android:label="@string/title_activity_mile_to_kilo">
         </activity>
     </application>
 

@@ -30,6 +30,8 @@ public class MainActivity extends Activity
 
     // Measurement Converter
     // Define variables for the widgets
+    private Button newGameButton;
+
     private TextView ConversionTextView;
     private Spinner splitSpinner;
 
@@ -68,6 +70,9 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
         // get references to the widgets
+
+        newGameButton = (Button) findViewById(R.id.newGameButton);
+
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
 
@@ -76,11 +81,10 @@ public class MainActivity extends Activity
         InchTextView = (TextView) findViewById(R.id.InchTextView);
         CentTextView = (TextView) findViewById(R.id.CentTextView);
 
-
         MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
-        KilometersTextView = (EditText) findViewById(R.id.KilometersValueEditText);
-
-
+        KilometersValueEditText = (EditText) findViewById(R.id.KilometersValueEditText);
+        InchValueEditText = (EditText) findViewById(R.id.InchValueEditText);
+        CentValueEditText = (EditText) findViewById(R.id.CentValueEditText);
 
         //set array adapter for a spinner
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(
@@ -90,7 +94,8 @@ public class MainActivity extends Activity
 
 
         // set the listeners
-        //newGameButton.setOnClickListener(this);
+
+        newGameButton.setOnClickListener(this);
         MilesValueEditText.setOnEditorActionListener(this);
         KilometersValueEditText.setOnEditorActionListener(this);
         InchValueEditText.setOnEditorActionListener(this);
@@ -140,11 +145,11 @@ public class MainActivity extends Activity
         CentValueEditText.setText(centToInchVar);
 
         // get name for player one
-        String playerOneName = prefs.getString("player_one_name", "");
+        //String playerOneName = prefs.getString("player_one_name", "");
         //namePlayerOneTextView.setText(playerOneName);
 
         // get name for player two
-        String playerTwoName = prefs.getString("player_two_name", "");
+        //String playerTwoName = prefs.getString("player_two_name", "");
         //namePlayerTwoTextView.setText(playerTwoName);
 
     }
@@ -166,9 +171,19 @@ public class MainActivity extends Activity
         float perPersonAmount = 0;
         if (split == 1)
         {
-            ConversionTextView.setVisibility(View.GONE);
-            MilesValueEditText.setVisibility(View.GONE);
-            KilometersTextView.setVisibility(View.GONE);
+            ConversionTextView.setVisibility(View.VISIBLE);
+
+            MileTextView.setVisibility(View.VISIBLE);
+            MilesValueEditText.setVisibility(View.VISIBLE);
+
+            KilometersTextView.setVisibility(View.VISIBLE);
+            KilometersValueEditText.setVisibility(View.VISIBLE);
+
+            InchTextView.setVisibility(View.VISIBLE);
+            InchValueEditText.setVisibility(View.VISIBLE);
+
+            CentTextView.setVisibility(View.VISIBLE);
+            CentValueEditText.setVisibility(View.VISIBLE);
             //perPersonLabel.setVisibility(View.GONE);
             //perPersonTextView.setVisibility(View.GONE);
         }
@@ -203,7 +218,6 @@ public class MainActivity extends Activity
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

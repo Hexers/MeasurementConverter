@@ -30,32 +30,63 @@ public class MileToKilo extends Activity
 
     // Measurement Converter
     // Define variables for the widgets
+    private Button newGameButton;
+
     private TextView ConversionTextView;
-    private TextView MileTextView;
-    private TextView KilometersTextView;
-    private EditText MilesValueEditText;
-    private EditText KilometersValueEditText;
     private Spinner splitSpinner;
 
-    // define instance variables that should be saved
+    private TextView MileTextView;
+    private TextView KilometersTextView;
+    private TextView InchTextView;
+    private TextView CentTextView;
 
+    private EditText MilesValueEditText;
+    private EditText KilometersValueEditText;
+    private EditText InchValueEditText;
+    private EditText CentValueEditText;
+
+
+    // define instance variables that should be saved
+    private String milesToKiloVar = "";
+    private String kiloToMileVar = "";
+    private String inchToCentVar = "";
+    private String centToInchVar = "";
+
+    private String mileString = "";
+    private String kilometerString = "";
+    private String inchString = "";
+    private String centimeterString = "";
+
+    //private String billAmountString = "";
+    //private float tipPercent = .15f;
 
     // set up preferences
     private SharedPreferences prefs;
-
+    private SharedPreferences savedValues;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.miles_to_kilometers);
+        setContentView(R.layout.activity_main);
 
         // get references to the widgets
+
+        newGameButton = (Button) findViewById(R.id.newGameButton);
+
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
+        splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
+
         MileTextView = (TextView) findViewById(R.id.MilesTextView);
         KilometersTextView = (TextView) findViewById(R.id.KilometersTextView);
+
         MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
-        KilometersTextView = (EditText) findViewById(R.id.KilometersValueEditText);
-        splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
+        KilometersValueEditText = (EditText) findViewById(R.id.KilometersValueEditText);
+
+        InchTextView = (TextView) findViewById(R.id.InchTextView);
+        CentTextView = (TextView) findViewById(R.id.CentTextView);
+
+        InchValueEditText = (EditText) findViewById(R.id.InchValueEditText);
+        CentValueEditText = (EditText) findViewById(R.id.CentValueEditText);
 
         //set array adapter for a spinner
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(
@@ -65,7 +96,15 @@ public class MileToKilo extends Activity
 
 
         // set the listeners
-        //newGameButton.setOnClickListener(this);
+
+        newGameButton.setOnClickListener(this);
+        MilesValueEditText.setOnEditorActionListener(this);
+        KilometersValueEditText.setOnEditorActionListener(this);
+        InchValueEditText.setOnEditorActionListener(this);
+        CentValueEditText.setOnEditorActionListener(this);
+
+        // get SharedPreferences object
+        savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
 
         // set the default values for the preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -95,12 +134,24 @@ public class MileToKilo extends Activity
     public void onResume() {
         super.onResume();
 
+        // get the instance variables
+        milesToKiloVar = savedValues.getString("MilesValueEditText", "");
+        kiloToMileVar = savedValues.getString("KilometersValueEditText", "");
+        inchToCentVar = savedValues.getString("InchValueEditText", "");
+        centToInchVar = savedValues.getString("CentValueEditText", "");
+
+        // set the amount on its widget
+        MilesValueEditText.setText(milesToKiloVar);
+        KilometersValueEditText.setText(kiloToMileVar);
+        InchValueEditText.setText(inchToCentVar);
+        CentValueEditText.setText(centToInchVar);
+
         // get name for player one
-        String playerOneName = prefs.getString("player_one_name", "");
+        //String playerOneName = prefs.getString("player_one_name", "");
         //namePlayerOneTextView.setText(playerOneName);
 
         // get name for player two
-        String playerTwoName = prefs.getString("player_two_name", "");
+        //String playerTwoName = prefs.getString("player_two_name", "");
         //namePlayerTwoTextView.setText(playerTwoName);
 
     }
@@ -122,6 +173,19 @@ public class MileToKilo extends Activity
         float perPersonAmount = 0;
         if (split == 1)
         {
+            ConversionTextView.setVisibility(View.VISIBLE);
+
+            MileTextView.setVisibility(View.VISIBLE);
+            MilesValueEditText.setVisibility(View.VISIBLE);
+
+            KilometersTextView.setVisibility(View.VISIBLE);
+            KilometersValueEditText.setVisibility(View.VISIBLE);
+
+            InchTextView.setVisibility(View.VISIBLE);
+            InchValueEditText.setVisibility(View.VISIBLE);
+
+            CentTextView.setVisibility(View.VISIBLE);
+            CentValueEditText.setVisibility(View.VISIBLE);
             //perPersonLabel.setVisibility(View.GONE);
             //perPersonTextView.setVisibility(View.GONE);
         }
@@ -156,7 +220,6 @@ public class MileToKilo extends Activity
                 startActivity(new Intent(MileToKilo.this, MileToKilo.class));
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -3,6 +3,12 @@
 
     <string name="title_activity_converter">Tic-Tac-Toe</string>
 
+
+    <string name="title_activity_mile_to_kilo">Miles to Kilometers</string>
+    <string name="title_activity_kilo_to_mile">Kilometers to Miles</string>
+    <string name="title_activity_inch_to_cent">Inches to Centimeters</string>
+    <string name="title_activity_cent_to_inch">Centimeters to Inches</string>
+
     <string name="menu_settings">Settings</string>
     <string name="menu_about">About</string>
 
@@ -35,7 +41,7 @@
     <string name="game_messages_label"> </string>
     <string name="versus">vs.</string>
 
-    <string name="ConversionTitle">Conversion</string>
+
     <string name="MilesTitle">Miles</string>
     <string name="KilometersTitle">Kilometers</string>
     <string name="InchTitle">Inches</string>
@@ -46,7 +52,9 @@
     <string name="InchValue"> </string>
     <string name="CentValue"> </string>
 
+    <string name="ConversionTitle">Conversion</string>
     <string-array name="split_array">
+        <item>Choose a selection:</item>
         <item>Miles to Kilometers</item>
         <item>Kilometers to Miles</item>
         <item>Inches to Centimeters</item>
