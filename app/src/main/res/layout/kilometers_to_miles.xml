@@ -34,7 +34,7 @@
         android:id="@+id/MilesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/MilesTextView"
+        android:layout_below="@+id/KilometersTextView"
         android:layout_marginTop="20dp"
         android:gravity="top|center_vertical|center_horizontal"
         android:padding="5dp"
