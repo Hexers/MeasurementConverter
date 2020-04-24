@@ -162,14 +162,73 @@ public class MileToKilo extends Activity
 
     public void calculateAnDisplay()
     {
+
         // Miles to Kilometers = 1.6093
-        double oneMile = 1.6093; // to km
+        //double oneMile = 1.6093; // to km
+        float oneMile = 1.6093f;
         // Kilometers to Miles = 0.6214
-        double oneKilometer = 0.6214; // to miles
+        //double oneKilometer = 0.6214; // to miles
+        float oneKilometer = 0.6214f;
         // Inches to Centimeters = 2.54
-        double oneInch = 2.54; // to centimeters
+        //double oneInch = 2.54; // to centimeters
+        float oneInch = 2.54f;
         // Centimeters to Inches = 0.3937
-        double oneCentimeter = 0.3937; // to inches
+        //double oneCentimeter = 0.3937; // to inches
+        float oneCentimeter = 0.3937f;
+
+        // Converts Miles String to Float + vice-versa
+        milesToKiloVar = MilesValueEditText.getText().toString();
+        float milesAmount;
+        if (milesToKiloVar.equals(""))
+        {
+            milesAmount = 0;
+        }
+        else
+        {
+            milesAmount = Float.parseFloat(milesToKiloVar);
+        }
+
+        milesAmount = oneKilometer * kiloToMileVar;
+        // Converts Kilometers String to Float + vice-versa
+        kiloToMileVar = KilometersValueEditText.getText().toString();
+        float kilometersAmount;
+        if (kiloToMileVar.equals(""))
+        {
+            kilometersAmount = 0;
+        }
+        else
+        {
+            kilometersAmount = Float.parseFloat(kiloToMileVar);
+        }
+
+        // Converts Inches String to Float + vice-versa
+        inchToCentVar = InchValueEditText.getText().toString();
+        float inchesAmount;
+        if (inchToCentVar.equals(""))
+        {
+            inchesAmount = 0;
+        }
+        else
+        {
+            inchesAmount = Float.parseFloat(inchToCentVar);
+        }
+
+        // Converts Centimeters String to Float + vice-versa
+        centToInchVar = CentValueEditText.getText().toString();
+        float centimetersAmount;
+        if (centToInchVar.equals(""))
+        {
+            centimetersAmount = 0;
+        }
+
+        else
+        {
+            centimetersAmount = Float.parseFloat(centToInchVar);
+        }
+
+
+
+
 
         //split amount and show / hide split amount variable
         int splitPosition = splitSpinner.getSelectedItemPosition();
