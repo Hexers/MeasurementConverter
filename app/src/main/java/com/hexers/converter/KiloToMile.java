@@ -49,10 +49,10 @@ public class KiloToMile extends Activity
 
 
     // define instance variables that should be saved
-    private String milesToKiloVar = "";
-    private String kiloToMileVar = "";
-    private String inchToCentVar = "";
-    private String centToInchVar = "";
+    private String milesVar = "";
+    private String kiloVar = "";
+    private String inchVar = "";
+    private String centVar = "";
 
     private String mileString = "";
     private String kilometerString = "";
@@ -139,16 +139,16 @@ public class KiloToMile extends Activity
         super.onResume();
 
         // get the instance variables
-        milesToKiloVar = savedValues.getString("MilesValueEditText", "");
-        kiloToMileVar = savedValues.getString("KilometersValueEditText", "");
-        inchToCentVar = savedValues.getString("InchValueEditText", "");
-        centToInchVar = savedValues.getString("CentValueEditText", "");
+        milesVar = savedValues.getString("MilesValueEditText", "");
+        kiloVar = savedValues.getString("KilometersValueEditText", "");
+        inchVar = savedValues.getString("InchValueEditText", "");
+        centVar = savedValues.getString("CentValueEditText", "");
 
         // set the amount on its widget
-        MilesValueEditText.setText(milesToKiloVar);
-        KilometersValueEditText.setText(kiloToMileVar);
-        InchValueEditText.setText(inchToCentVar);
-        CentValueEditText.setText(centToInchVar);
+        MilesValueEditText.setText(milesVar);
+        KilometersValueEditText.setText(kiloVar);
+        InchValueEditText.setText(inchVar);
+        CentValueEditText.setText(centVar);
 
         // get name for player one
         //String playerOneName = prefs.getString("player_one_name", "");

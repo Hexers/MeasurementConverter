@@ -42,6 +42,9 @@ public class MileToKilo extends Activity
     private TextView InchTextView;
     private TextView CentTextView;
 
+    // New
+    private TextView totalKilometers;
+
     private EditText MilesValueEditText;
     private EditText KilometersValueEditText;
     private EditText InchValueEditText;
@@ -49,10 +52,10 @@ public class MileToKilo extends Activity
 
 
     // define instance variables that should be saved
-    private String milesToKiloVar = "";
-    private String kiloToMileVar = "";
-    private String inchToCentVar = "";
-    private String centToInchVar = "";
+    private String milesVar = "";
+    private String kiloVar = "";
+    private String inchVar = "";
+    private String centVar = "";
 
     private String mileString = "";
     private String kilometerString = "";
@@ -61,6 +64,12 @@ public class MileToKilo extends Activity
 
     //private String billAmountString = "";
     //private float tipPercent = .15f;
+
+    private float milesFloat = 1.6093f;
+    private float kilometersFloat = 0.6214f;
+    private float inchesFloat = 2.54f;
+    private float centimetersFloat = 0.3937f;
+
 
     // set up preferences
     private SharedPreferences prefs;
@@ -89,6 +98,9 @@ public class MileToKilo extends Activity
         InchValueEditText = (EditText) findViewById(R.id.InchValueEditText);
         CentValueEditText = (EditText) findViewById(R.id.CentValueEditText);
 
+        // New
+        totalKilometers = (TextView) findViewById(R.id.totalKilometers);
+
         //set array adapter for a spinner
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(
                 this, R.array.split_array, android.R.layout.simple_spinner_item);
@@ -99,9 +111,6 @@ public class MileToKilo extends Activity
         // Set the listeners for buttons & EditText's
         newGameButton.setOnClickListener(this);
         MilesValueEditText.setOnEditorActionListener(this);
-        KilometersValueEditText.setOnEditorActionListener(this);
-        InchValueEditText.setOnEditorActionListener(this);
-        CentValueEditText.setOnEditorActionListener(this);
 
         // Set the listeners for Spinners
         splitSpinner.setSelection(1,false); // Sets default selection to null
@@ -129,6 +138,8 @@ public class MileToKilo extends Activity
         Editor editor = prefs.edit();
         //editor.putString("billAmountString", billAmountString);
         //editor.putFloat("tipPercent", tipPercent);
+        editor.putString("MilesValueEditText", milesVar);
+        editor.putFloat("kilometersFloat", kilometersFloat);
         editor.commit();
 
         super.onPause();
@@ -139,125 +150,41 @@ public class MileToKilo extends Activity
         super.onResume();
 
         // get the instance variables
-        milesToKiloVar = savedValues.getString("MilesValueEditText", "");
-        kiloToMileVar = savedValues.getString("KilometersValueEditText", "");
-        inchToCentVar = savedValues.getString("InchValueEditText", "");
-        centToInchVar = savedValues.getString("CentValueEditText", "");
+        milesVar = savedValues.getString("MilesValueEditText", "");
+        kilometersFloat = savedValues.getFloat("kilometersFloat", 0.6214f);
 
         // set the amount on its widget
-        MilesValueEditText.setText(milesToKiloVar);
-        KilometersValueEditText.setText(kiloToMileVar);
-        InchValueEditText.setText(inchToCentVar);
-        CentValueEditText.setText(centToInchVar);
+        MilesValueEditText.setText(milesVar);
 
-        // get name for player one
-        //String playerOneName = prefs.getString("player_one_name", "");
-        //namePlayerOneTextView.setText(playerOneName);
-
-        // get name for player two
-        //String playerTwoName = prefs.getString("player_two_name", "");
-        //namePlayerTwoTextView.setText(playerTwoName);
+        // calculate and display
+        calculateAndDisplay();
 
     }
 
-    public void calculateAnDisplay()
+    public void calculateAndDisplay()
     {
+        // Get the Miles Variable from EditText
+        milesVar = MilesValueEditText.getText().toString();
+        float milesTotal;
 
-        // Miles to Kilometers = 1.6093
-        //double oneMile = 1.6093; // to km
-        float oneMile = 1.6093f;
-        // Kilometers to Miles = 0.6214
-        //double oneKilometer = 0.6214; // to miles
-        float oneKilometer = 0.6214f;
-        // Inches to Centimeters = 2.54
-        //double oneInch = 2.54; // to centimeters
-        float oneInch = 2.54f;
-        // Centimeters to Inches = 0.3937
-        //double oneCentimeter = 0.3937; // to inches
-        float oneCentimeter = 0.3937f;
-
-        // Converts Miles String to Float + vice-versa
-        milesToKiloVar = MilesValueEditText.getText().toString();
-        float milesAmount;
-        if (milesToKiloVar.equals(""))
+        if (milesVar.equals(""))
         {
-            milesAmount = 0;
+            milesTotal = 0;
         }
         else
         {
-            milesAmount = Float.parseFloat(milesToKiloVar);
+            milesTotal= Float.parseFloat(milesVar);
         }
 
-        milesAmount = oneKilometer * kiloToMileVar;
-        // Converts Kilometers String to Float + vice-versa
-        kiloToMileVar = KilometersValueEditText.getText().toString();
-        float kilometersAmount;
-        if (kiloToMileVar.equals(""))
-        {
-            kilometersAmount = 0;
-        }
-        else
-        {
-            kilometersAmount = Float.parseFloat(kiloToMileVar);
-        }
+        // <--------------------> Correct Calculation <-------------------->
+        // <--------------------> To Kilometers <-------------------->
+        float kilometersTotal = 0;
 
-        // Converts Inches String to Float + vice-versa
-        inchToCentVar = InchValueEditText.getText().toString();
-        float inchesAmount;
-        if (inchToCentVar.equals(""))
-        {
-            inchesAmount = 0;
-        }
-        else
-        {
-            inchesAmount = Float.parseFloat(inchToCentVar);
-        }
+        kilometersTotal = milesTotal * kilometersFloat; // No.....
 
-        // Converts Centimeters String to Float + vice-versa
-        centToInchVar = CentValueEditText.getText().toString();
-        float centimetersAmount;
-        if (centToInchVar.equals(""))
-        {
-            centimetersAmount = 0;
-        }
-
-        else
-        {
-            centimetersAmount = Float.parseFloat(centToInchVar);
-        }
-
-
-
-
-
-        //split amount and show / hide split amount variable
-        int splitPosition = splitSpinner.getSelectedItemPosition();
-        int split = splitPosition + 1;
-        float perPersonAmount = 0;
-        if (split == 1)
-        {
-            ConversionTextView.setVisibility(View.VISIBLE);
-
-            MileTextView.setVisibility(View.VISIBLE);
-            MilesValueEditText.setVisibility(View.VISIBLE);
-
-            KilometersTextView.setVisibility(View.VISIBLE);
-            KilometersValueEditText.setVisibility(View.VISIBLE);
-
-            InchTextView.setVisibility(View.VISIBLE);
-            InchValueEditText.setVisibility(View.VISIBLE);
-
-            CentTextView.setVisibility(View.VISIBLE);
-            CentValueEditText.setVisibility(View.VISIBLE);
-            //perPersonLabel.setVisibility(View.GONE);
-            //perPersonTextView.setVisibility(View.GONE);
-        }
-        else
-        {
-            //perPersonAmount = totalAmount / split;
-            //perPersonLabel.setVisibility(View.VISIBLE);
-            //perPersonTextView.setVisibility(View.VISIBLE);
-        }
+        // Display with formatting
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        totalKilometers.setText(currency.format(kilometersTotal));
     }
 
     @Override

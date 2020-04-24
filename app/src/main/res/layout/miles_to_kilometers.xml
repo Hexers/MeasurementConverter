@@ -105,6 +105,7 @@
         android:textSize="20sp" />
 
     <!--Kilometers -->
+    <!--
     <EditText
         android:id="@+id/KilometersValueEditText"
         android:layout_width="wrap_content"
@@ -114,6 +115,19 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/KilometersValue"
+        android:textSize="20sp" />
+    -->
+    <!-- Total Kilometers -->
+    <TextView
+        android:id="@+id/totalKilometers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/KilometersTextView"
+        android:layout_toRightOf="@+id/KilometersTextView"
+        android:padding="5dp"
+        android:ems="8"
+        android:inputType="numberDecimal"
+        android:text="@string/total_kilometers"
         android:textSize="20sp" />
 
     <!-- Inches-->

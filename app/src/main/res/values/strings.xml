@@ -52,6 +52,11 @@
     <string name="InchValue"> </string>
     <string name="CentValue"> </string>
 
+    <string name="total_kilometers"> </string>
+    <string name="total_miles"> </string>
+    <string name="total_inches"> </string>
+    <string name="total_centimeters"> </string>
+
     <string name="ConversionTitle">Conversion</string>
     <string-array name="split_array">
         <item>Choose a selection:</item>
