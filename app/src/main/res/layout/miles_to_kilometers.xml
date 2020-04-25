@@ -126,7 +126,6 @@
         android:layout_toRightOf="@+id/KilometersTextView"
         android:padding="5dp"
         android:ems="8"
-        android:inputType="numberDecimal"
         android:text="@string/total_kilometers"
         android:textSize="20sp" />
 

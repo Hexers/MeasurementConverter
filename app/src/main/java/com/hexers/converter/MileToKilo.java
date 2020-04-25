@@ -39,36 +39,25 @@ public class MileToKilo extends Activity
 
     private TextView MileTextView;
     private TextView KilometersTextView;
-    private TextView InchTextView;
-    private TextView CentTextView;
 
     // New
     private TextView totalKilometers;
 
     private EditText MilesValueEditText;
-    private EditText KilometersValueEditText;
-    private EditText InchValueEditText;
-    private EditText CentValueEditText;
 
 
     // define instance variables that should be saved
     private String milesVar = "";
     private String kiloVar = "";
-    private String inchVar = "";
-    private String centVar = "";
 
     private String mileString = "";
     private String kilometerString = "";
-    private String inchString = "";
-    private String centimeterString = "";
 
     //private String billAmountString = "";
     //private float tipPercent = .15f;
 
     private float milesFloat = 1.6093f;
     private float kilometersFloat = 0.6214f;
-    private float inchesFloat = 2.54f;
-    private float centimetersFloat = 0.3937f;
 
 
     // set up preferences
@@ -87,18 +76,10 @@ public class MileToKilo extends Activity
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
 
-
         MileTextView = (TextView) findViewById(R.id.MilesTextView);
-        KilometersTextView = (TextView) findViewById(R.id.KilometersTextView);
-        InchTextView = (TextView) findViewById(R.id.InchTextView);
-        CentTextView = (TextView) findViewById(R.id.CentTextView);
-
         MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
-        KilometersValueEditText = (EditText) findViewById(R.id.KilometersValueEditText);
-        InchValueEditText = (EditText) findViewById(R.id.InchValueEditText);
-        CentValueEditText = (EditText) findViewById(R.id.CentValueEditText);
 
-        // New
+        KilometersTextView = (TextView) findViewById(R.id.KilometersTextView);
         totalKilometers = (TextView) findViewById(R.id.totalKilometers);
 
         //set array adapter for a spinner
@@ -124,6 +105,8 @@ public class MileToKilo extends Activity
 
         // get default SharedPreferences object
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        calculateAndDisplay();
     }
 
     @Override
@@ -140,7 +123,9 @@ public class MileToKilo extends Activity
         //editor.putFloat("tipPercent", tipPercent);
         editor.putString("MilesValueEditText", milesVar);
         editor.putFloat("kilometersFloat", kilometersFloat);
-        editor.commit();
+
+        //editor.putFloat("totalKilometers", totalKilometers);
+        editor.apply();
 
         super.onPause();
     }
@@ -163,6 +148,7 @@ public class MileToKilo extends Activity
 
     public void calculateAndDisplay()
     {
+        NumberFormat nf = NumberFormat.getInstance();
         // Get the Miles Variable from EditText
         milesVar = MilesValueEditText.getText().toString();
         float milesTotal;
@@ -173,18 +159,19 @@ public class MileToKilo extends Activity
         }
         else
         {
-            milesTotal= Float.parseFloat(milesVar);
+            milesTotal = Float.parseFloat(milesVar);
+            //MilesValueEditText.setText(milesVar);
         }
 
-        // <--------------------> Correct Calculation <-------------------->
-        // <--------------------> To Kilometers <-------------------->
-        float kilometersTotal = 0;
+        float kilometersTotal = 0.6214f;
+        float milesFloat = 1.6093f;
 
-        kilometersTotal = milesTotal * kilometersFloat; // No.....
+        kilometersTotal = milesTotal * milesFloat; // No.....
 
         // Display with formatting
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
-        totalKilometers.setText(currency.format(kilometersTotal));
+
+        totalKilometers.setText(nf.format(kilometersTotal));
+
     }
 
     @Override
@@ -197,6 +184,7 @@ public class MileToKilo extends Activity
                 actionId == EditorInfo.IME_ACTION_UNSPECIFIED ||
                 keyCode == KeyEvent.KEYCODE_DPAD_CENTER ||
                 keyCode == KeyEvent.KEYCODE_ENTER) {
+            calculateAndDisplay();
         }
         return false;
     }
