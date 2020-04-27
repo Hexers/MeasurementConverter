@@ -30,6 +30,10 @@
         android:layout_toRightOf="@id/ConversionTextView" />
 
     <!-- Miles-->
+    <!--
+        Placeholder for others
+        Will be replaced by an image
+    -->
     <TextView
         android:id="@+id/MilesTextView"
         android:layout_width="wrap_content"
@@ -59,53 +63,7 @@
         android:textStyle="bold"
         android:textSize="20sp" />
 
-    <!-- Inches-->
-    <TextView
-        android:id="@+id/InchTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/MilesTextView"
-        android:layout_marginTop="20dp"
-        android:gravity="top|center_vertical|center_horizontal"
-        android:padding="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/InchTitle"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:visibility="gone"/>
-
-    <!--Centimeters -->
-    <TextView
-        android:id="@+id/CentTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/MilesTextView"
-        android:layout_marginTop="20dp"
-        android:gravity="top|center_vertical|center_horizontal"
-        android:padding="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/CentTitle"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:visibility="gone"/>
-
-    <!--
-    <EditText
-        android:id="@+id/MilesValueEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/MilesTextView"
-        android:layout_toRightOf="@+id/MilesTextView"
-        android:ems="8"
-        android:inputType="numberDecimal"
-        android:text="@string/MilesValue"
-        android:textSize="20sp" />
-    -->
-
     <!--Kilometers -->
-
     <EditText
         android:id="@+id/KilometersValueEditText"
         android:layout_width="wrap_content"
@@ -129,32 +87,6 @@
         android:text="@string/total_miles"
         android:textSize="20sp" />
 
-    <!-- Inches-->
-    <EditText
-        android:id="@+id/InchValueEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/KilometersTextView"
-        android:layout_toRightOf="@+id/KilometersTextView"
-        android:ems="8"
-        android:inputType="numberDecimal"
-        android:text="@string/InchValue"
-        android:textSize="20sp"
-        android:visibility="gone"/>
-
-    <!-- Centimeters-->
-    <EditText
-        android:id="@+id/CentValueEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/KilometersTextView"
-        android:layout_toRightOf="@+id/KilometersTextView"
-        android:ems="8"
-        android:inputType="numberDecimal"
-        android:text="@string/CentValue"
-        android:textSize="20sp"
-        android:visibility="gone"/>
-
     <!-- New Game-->
     <Button
         android:id="@+id/newGameButton"
@@ -164,6 +96,29 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:text="@string/new_game"
+        android:textSize="20sp" />
+
+    <!-- Apply Button -->
+    <Button
+        android:id="@+id/applyButton"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/MilesTextView"
+        android:text="@string/apply_button"
+        android:textSize="20sp" />
+
+    <!-- Reset Button-->
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/totalMiles"
+        android:layout_toRightOf="@+id/applyButton"
+        android:text="@string/reset_button"
         android:textSize="20sp" />
 
 </RelativeLayout>

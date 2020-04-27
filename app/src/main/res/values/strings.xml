@@ -24,6 +24,8 @@
     <string name="player_two_name_summary">Sets name for Player Two.</string>
 
     <string name="new_game">Reset</string>
+    <string name="apply_button">Apply</string>
+    <string name="reset_button">Reset</string>
 
     <string name="tile_one_name"> </string>
     <string name="tile_two_name"> </string>

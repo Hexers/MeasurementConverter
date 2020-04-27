@@ -37,30 +37,18 @@ public class CentimeterToInch extends Activity
     private TextView ConversionTextView;
     private Spinner splitSpinner;
 
-    private TextView MileTextView;
-    private TextView KilometersTextView;
     private TextView InchTextView;
     private TextView CentTextView;
 
-    private EditText MilesValueEditText;
-    private EditText KilometersValueEditText;
-    private EditText InchValueEditText;
+    private TextView totalInches;
     private EditText CentValueEditText;
 
-
     // define instance variables that should be saved
-    private String milesVar = "";
-    private String kiloVar = "";
     private String inchVar = "";
     private String centVar = "";
 
-    private String mileString = "";
-    private String kilometerString = "";
-    private String inchString = "";
-    private String centimeterString = "";
-
-    //private String billAmountString = "";
-    //private float tipPercent = .15f;
+    private float inchesFloat = 2.54f;
+    private float centimetersFloat = 0.3937f;
 
     // set up preferences
     private SharedPreferences prefs;
@@ -72,22 +60,16 @@ public class CentimeterToInch extends Activity
         setContentView(R.layout.centimeters_to_inches);
 
         // get references to the widgets
-
         newGameButton = (Button) findViewById(R.id.newGameButton);
 
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
 
-
-        MileTextView = (TextView) findViewById(R.id.MilesTextView);
-        KilometersTextView = (TextView) findViewById(R.id.KilometersTextView);
-        InchTextView = (TextView) findViewById(R.id.InchTextView);
         CentTextView = (TextView) findViewById(R.id.CentTextView);
-
-        MilesValueEditText = (EditText) findViewById(R.id.MilesValueEditText);
-        KilometersValueEditText = (EditText) findViewById(R.id.KilometersValueEditText);
-        InchValueEditText = (EditText) findViewById(R.id.InchValueEditText);
         CentValueEditText = (EditText) findViewById(R.id.CentValueEditText);
+
+        InchTextView = (TextView) findViewById(R.id.InchTextView);
+        totalInches = (TextView) findViewById(R.id.totalInches);
 
         //set array adapter for a spinner
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(
@@ -95,12 +77,8 @@ public class CentimeterToInch extends Activity
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         splitSpinner.setAdapter(adapter);
 
-
         // Set the listeners for buttons & EditText's
         newGameButton.setOnClickListener(this);
-        MilesValueEditText.setOnEditorActionListener(this);
-        KilometersValueEditText.setOnEditorActionListener(this);
-        InchValueEditText.setOnEditorActionListener(this);
         CentValueEditText.setOnEditorActionListener(this);
 
         // Set the listeners for Spinners
@@ -115,6 +93,8 @@ public class CentimeterToInch extends Activity
 
         // get default SharedPreferences object
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        calculateAndDisplay();
     }
 
     @Override
@@ -127,9 +107,9 @@ public class CentimeterToInch extends Activity
     public void onPause() {
         // save the instance variables
         Editor editor = prefs.edit();
-        //editor.putString("billAmountString", billAmountString);
-        //editor.putFloat("tipPercent", tipPercent);
-        editor.commit();
+        editor.putString("CentValueEditText", centVar);
+        editor.putFloat("inchesFloat", inchesFloat);
+        editor.apply();
 
         super.onPause();
     }
@@ -139,66 +119,40 @@ public class CentimeterToInch extends Activity
         super.onResume();
 
         // get the instance variables
-        milesVar = savedValues.getString("MilesValueEditText", "");
-        kiloVar = savedValues.getString("KilometersValueEditText", "");
         inchVar = savedValues.getString("InchValueEditText", "");
         centVar = savedValues.getString("CentValueEditText", "");
 
         // set the amount on its widget
-        MilesValueEditText.setText(milesVar);
-        KilometersValueEditText.setText(kiloVar);
-        InchValueEditText.setText(inchVar);
         CentValueEditText.setText(centVar);
 
-        // get name for player one
-        //String playerOneName = prefs.getString("player_one_name", "");
-        //namePlayerOneTextView.setText(playerOneName);
-
-        // get name for player two
-        //String playerTwoName = prefs.getString("player_two_name", "");
-        //namePlayerTwoTextView.setText(playerTwoName);
-
+        // calculate and display
+        calculateAndDisplay();
     }
 
-    public void calculateAnDisplay()
+    public void calculateAndDisplay()
     {
-        // Miles to Kilometers = 1.6093
-        double oneMile = 1.6093; // to km
-        // Kilometers to Miles = 0.6214
-        double oneKilometer = 0.6214; // to miles
-        // Inches to Centimeters = 2.54
-        double oneInch = 2.54; // to centimeters
-        // Centimeters to Inches = 0.3937
-        double oneCentimeter = 0.3937; // to inches
+        NumberFormat nf = NumberFormat.getInstance();
+        // Get the Centimeters Variable from EditText
+        centVar = CentValueEditText.getText().toString();
+        float centimetersTotal;
 
-        //split amount and show / hide split amount variable
-        int splitPosition = splitSpinner.getSelectedItemPosition();
-        int split = splitPosition + 1;
-        float perPersonAmount = 0;
-        if (split == 1)
+        if (centVar.equals(""))
         {
-            ConversionTextView.setVisibility(View.VISIBLE);
-
-            MileTextView.setVisibility(View.VISIBLE);
-            MilesValueEditText.setVisibility(View.VISIBLE);
-
-            KilometersTextView.setVisibility(View.VISIBLE);
-            KilometersValueEditText.setVisibility(View.VISIBLE);
-
-            InchTextView.setVisibility(View.VISIBLE);
-            InchValueEditText.setVisibility(View.VISIBLE);
-
-            CentTextView.setVisibility(View.VISIBLE);
-            CentValueEditText.setVisibility(View.VISIBLE);
-            //perPersonLabel.setVisibility(View.GONE);
-            //perPersonTextView.setVisibility(View.GONE);
+            centimetersTotal = 0;
         }
         else
         {
-            //perPersonAmount = totalAmount / split;
-            //perPersonLabel.setVisibility(View.VISIBLE);
-            //perPersonTextView.setVisibility(View.VISIBLE);
+            centimetersTotal = Float.parseFloat(centVar);
         }
+
+        float inchesTotal = 2.54f;
+        float centimetersFloat = 0.3937f;
+
+        inchesTotal = centimetersTotal * centimetersFloat;
+
+        // Display with formatting
+
+        totalInches.setText(nf.format(inchesTotal));
     }
 
     @Override
@@ -211,6 +165,7 @@ public class CentimeterToInch extends Activity
                 actionId == EditorInfo.IME_ACTION_UNSPECIFIED ||
                 keyCode == KeyEvent.KEYCODE_DPAD_CENTER ||
                 keyCode == KeyEvent.KEYCODE_ENTER) {
+            calculateAndDisplay();
         }
         return false;
     }
@@ -246,11 +201,6 @@ public class CentimeterToInch extends Activity
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        /*
-            Toast.makeText(parent.getContext(), "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
-
-         */
-
         switch (parent.getId())
         {
             case R.id.splitSpinner:
@@ -262,7 +212,6 @@ public class CentimeterToInch extends Activity
 
                 if (position == 1) // Miles to Kilometers
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(CentimeterToInch.this, MileToKilo.class);
@@ -271,7 +220,6 @@ public class CentimeterToInch extends Activity
 
                 if (position == 2) // Kilometers to Miles
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(CentimeterToInch.this, KiloToMile.class);
@@ -279,7 +227,6 @@ public class CentimeterToInch extends Activity
                 }
                 if (position == 3) //Inches to Centimeters
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(CentimeterToInch.this, InchToCentimeter.class);
@@ -287,45 +234,12 @@ public class CentimeterToInch extends Activity
                 }
                 if (position == 4) // Centimeters to Inches
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(CentimeterToInch.this, CentimeterToInch.class);
                     startActivity(intent);
                 }
-                //Do something
-                //Toast.makeText(this, "Conversion Selected: " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-
-                /*
-                parent.setSelection(0); // Choose a Selection
-                parent.setSelection(1); // Miles to Kilometers
-                parent.setSelection(2); // Kilometers to Miles
-                parent.setSelection(3); // Inches to Centimeters
-                parent.setSelection(4); // Centimeters to Inches
-
-                 */
-                /*
-                Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-                break;
-                 */
-
-                /*
-                        MilesValueEditText.setText(milesToKiloVar);
-                        KilometersValueEditText.setText(kiloToMileVar);
-                        InchValueEditText.setText(inchToCentVar);
-                        CentValueEditText.setText(centToInchVar);
-                */
-
-                /*
-            case R.id.splitSpinner:
-                //Do another thing
-                Toast.makeText(this, "Option Selected: " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                break;
-
-                 */
         }
-
-
     }
 
     @Override

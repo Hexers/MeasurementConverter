@@ -200,11 +200,6 @@ public class MileToKilo extends Activity
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        /*
-            Toast.makeText(parent.getContext(), "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
-
-         */
-
         switch (parent.getId())
         {
             case R.id.splitSpinner:
@@ -216,7 +211,6 @@ public class MileToKilo extends Activity
 
                 if (position == 1) // Miles to Kilometers
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MileToKilo.this, MileToKilo.class);
@@ -225,7 +219,6 @@ public class MileToKilo extends Activity
 
                 if (position == 2) // Kilometers to Miles
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MileToKilo.this, KiloToMile.class);
@@ -233,7 +226,6 @@ public class MileToKilo extends Activity
                 }
                 if (position == 3) //Inches to Centimeters
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MileToKilo.this, InchToCentimeter.class);
@@ -241,7 +233,6 @@ public class MileToKilo extends Activity
                 }
                 if (position == 4) // Centimeters to Inches
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MileToKilo.this, CentimeterToInch.class);
