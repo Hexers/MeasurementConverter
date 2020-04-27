@@ -32,7 +32,8 @@ public class CentimeterToInch extends Activity
 
     // Measurement Converter
     // Define variables for the widgets
-    private Button newGameButton;
+    private Button resetButton;
+    private Button applyButton;
 
     private TextView ConversionTextView;
     private Spinner splitSpinner;
@@ -60,7 +61,8 @@ public class CentimeterToInch extends Activity
         setContentView(R.layout.centimeters_to_inches);
 
         // get references to the widgets
-        newGameButton = (Button) findViewById(R.id.newGameButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
+        applyButton = (Button) findViewById(R.id.applyButton);
 
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
@@ -78,7 +80,8 @@ public class CentimeterToInch extends Activity
         splitSpinner.setAdapter(adapter);
 
         // Set the listeners for buttons & EditText's
-        newGameButton.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
+        applyButton.setOnClickListener(this);
         CentValueEditText.setOnEditorActionListener(this);
 
         // Set the listeners for Spinners
@@ -173,11 +176,14 @@ public class CentimeterToInch extends Activity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-            case R.id.newGameButton:
+            case R.id.resetButton:
                 // Reloads MainActivity class
-                Intent intent = new Intent(CentimeterToInch.this, MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(CentimeterToInch.this, MainActivity.class));
+
+            case R.id.applyButton:
+                // Apply Button
+                calculateAndDisplay();
+                break;
         }
     }
 

@@ -32,7 +32,8 @@ public class KiloToMile extends Activity
 
     // Measurement Converter
     // Define variables for the widgets
-    private Button newGameButton;
+    private Button resetButton;
+    private Button applyButton;
 
     private TextView ConversionTextView;
     private Spinner splitSpinner;
@@ -60,7 +61,8 @@ public class KiloToMile extends Activity
         setContentView(R.layout.kilometers_to_miles);
 
         // Get references to the widgets
-        newGameButton = (Button) findViewById(R.id.newGameButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
+        applyButton = (Button) findViewById(R.id.applyButton);
 
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
@@ -78,7 +80,8 @@ public class KiloToMile extends Activity
         splitSpinner.setAdapter(adapter);
 
         // Set the listeners for buttons & EditText's
-        newGameButton.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
+        applyButton.setOnClickListener(this);
         KilometersValueEditText.setOnEditorActionListener(this);
 
         // Set the listeners for Spinners
@@ -174,9 +177,14 @@ public class KiloToMile extends Activity
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.newGameButton:
+            case R.id.resetButton:
                 // Reloads MainActivity class
                 startActivity(new Intent(KiloToMile.this, MainActivity.class));
+
+            case R.id.applyButton:
+                // Apply Button
+                calculateAndDisplay();
+                break;
         }
     }
 
@@ -200,11 +208,6 @@ public class KiloToMile extends Activity
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        /*
-            Toast.makeText(parent.getContext(), "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
-
-         */
-
         switch (parent.getId())
         {
             case R.id.splitSpinner:
@@ -216,7 +219,6 @@ public class KiloToMile extends Activity
 
                 if (position == 1) // Miles to Kilometers
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(KiloToMile.this, MileToKilo.class);
@@ -225,7 +227,6 @@ public class KiloToMile extends Activity
 
                 if (position == 2) // Kilometers to Miles
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(KiloToMile.this, KiloToMile.class);
@@ -233,7 +234,6 @@ public class KiloToMile extends Activity
                 }
                 if (position == 3) //Inches to Centimeters
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(KiloToMile.this, InchToCentimeter.class);
@@ -241,7 +241,6 @@ public class KiloToMile extends Activity
                 }
                 if (position == 4) // Centimeters to Inches
                 {
-                    //Do something
                     Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(KiloToMile.this, CentimeterToInch.class);

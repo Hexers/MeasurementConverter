@@ -4,12 +4,19 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
+    <!-- Banner -->
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/measurement_converter" />
     <!-- Conversion-->
     <TextView
         android:id="@+id/ConversionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newGameButton"
+        android:layout_below="@+id/banner"
         android:layout_marginTop="20dp"
         android:gravity="top|center_vertical|center_horizontal"
         android:padding="5dp"
@@ -44,15 +51,28 @@
         android:textSize="20sp"
         android:visibility="gone"/>
 
-    <!-- New Game-->
+    <!-- Apply Button -->
     <Button
-        android:id="@+id/newGameButton"
-        android:layout_width="324dp"
+        android:id="@+id/applyButton"
+        android:layout_width="175dp"
         android:layout_height="75dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:text="@string/new_game"
-        android:textSize="20sp" />
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/ConversionTextView"
+        android:text="@string/apply_button"
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
+    <!-- Reset Button-->
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/ConversionTextView"
+        android:layout_toRightOf="@+id/applyButton"
+        android:text="@string/reset_button"
+        android:textSize="20sp"
+        android:visibility="gone"/>
 </RelativeLayout>

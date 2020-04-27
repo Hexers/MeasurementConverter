@@ -32,7 +32,8 @@ public class MainActivity extends Activity
 
     // Measurement Converter
     // Define variables for the widgets
-    private Button newGameButton;
+    private Button applyButton;
+    private Button resetButton;
 
     private TextView ConversionTextView;
     private Spinner splitSpinner;
@@ -48,7 +49,8 @@ public class MainActivity extends Activity
 
         // get references to the widgets
 
-        newGameButton = (Button) findViewById(R.id.newGameButton);
+        applyButton = (Button) findViewById(R.id.applyButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
 
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
         splitSpinner = (Spinner) findViewById(R.id.splitSpinner);
@@ -62,7 +64,8 @@ public class MainActivity extends Activity
 
 
         // Set the listeners for buttons & EditText's
-        newGameButton.setOnClickListener(this);
+        applyButton.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
 
         // Set the listeners for Spinners
         splitSpinner.setSelection(0,false); // Sets default selection to null
@@ -88,9 +91,7 @@ public class MainActivity extends Activity
     public void onPause() {
         // save the instance variables
         Editor editor = prefs.edit();
-        //editor.putString("billAmountString", billAmountString);
-        //editor.putFloat("tipPercent", tipPercent);
-        editor.commit();
+        editor.apply();
 
         super.onPause();
     }
@@ -123,9 +124,12 @@ public class MainActivity extends Activity
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.newGameButton:
+            case R.id.resetButton:
                 // Reloads MainActivity class
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
+
+            case R.id.applyButton:
+                //startActivity(new Intent(MainActivity.this, MainActivity.class));
         }
     }
 
