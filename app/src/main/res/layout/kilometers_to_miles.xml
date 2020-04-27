@@ -91,7 +91,7 @@
         android:textSize="20sp"
         android:visibility="gone"/>
 
-    <!-- Miles-->
+    <!--
     <EditText
         android:id="@+id/MilesValueEditText"
         android:layout_width="wrap_content"
@@ -102,8 +102,10 @@
         android:inputType="numberDecimal"
         android:text="@string/MilesValue"
         android:textSize="20sp" />
+    -->
 
     <!--Kilometers -->
+
     <EditText
         android:id="@+id/KilometersValueEditText"
         android:layout_width="wrap_content"
@@ -113,6 +115,18 @@
         android:ems="8"
         android:inputType="numberDecimal"
         android:text="@string/KilometersValue"
+        android:textSize="20sp" />
+
+    <!-- Total Miles -->
+    <TextView
+        android:id="@+id/totalMiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/MilesTextView"
+        android:layout_toRightOf="@+id/MilesTextView"
+        android:padding="5dp"
+        android:ems="8"
+        android:text="@string/total_miles"
         android:textSize="20sp" />
 
     <!-- Inches-->

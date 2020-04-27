@@ -40,25 +40,15 @@ public class MileToKilo extends Activity
     private TextView MileTextView;
     private TextView KilometersTextView;
 
-    // New
     private TextView totalKilometers;
-
     private EditText MilesValueEditText;
-
 
     // define instance variables that should be saved
     private String milesVar = "";
     private String kiloVar = "";
 
-    private String mileString = "";
-    private String kilometerString = "";
-
-    //private String billAmountString = "";
-    //private float tipPercent = .15f;
-
     private float milesFloat = 1.6093f;
     private float kilometersFloat = 0.6214f;
-
 
     // set up preferences
     private SharedPreferences prefs;
@@ -69,8 +59,7 @@ public class MileToKilo extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.miles_to_kilometers);
 
-        // get references to the widgets
-
+        // Get references to the widgets
         newGameButton = (Button) findViewById(R.id.newGameButton);
 
         ConversionTextView = (TextView) findViewById(R.id.ConversionTextView);
@@ -87,7 +76,6 @@ public class MileToKilo extends Activity
                 this, R.array.split_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         splitSpinner.setAdapter(adapter);
-
 
         // Set the listeners for buttons & EditText's
         newGameButton.setOnClickListener(this);
@@ -119,12 +107,8 @@ public class MileToKilo extends Activity
     public void onPause() {
         // save the instance variables
         Editor editor = prefs.edit();
-        //editor.putString("billAmountString", billAmountString);
-        //editor.putFloat("tipPercent", tipPercent);
         editor.putString("MilesValueEditText", milesVar);
         editor.putFloat("kilometersFloat", kilometersFloat);
-
-        //editor.putFloat("totalKilometers", totalKilometers);
         editor.apply();
 
         super.onPause();
@@ -143,7 +127,6 @@ public class MileToKilo extends Activity
 
         // calculate and display
         calculateAndDisplay();
-
     }
 
     public void calculateAndDisplay()
@@ -160,18 +143,16 @@ public class MileToKilo extends Activity
         else
         {
             milesTotal = Float.parseFloat(milesVar);
-            //MilesValueEditText.setText(milesVar);
         }
 
         float kilometersTotal = 0.6214f;
         float milesFloat = 1.6093f;
 
-        kilometersTotal = milesTotal * milesFloat; // No.....
+        kilometersTotal = milesTotal * milesFloat;
 
         // Display with formatting
 
         totalKilometers.setText(nf.format(kilometersTotal));
-
     }
 
     @Override
@@ -266,39 +247,7 @@ public class MileToKilo extends Activity
                     Intent intent = new Intent(MileToKilo.this, CentimeterToInch.class);
                     startActivity(intent);
                 }
-                //Do something
-                //Toast.makeText(this, "Conversion Selected: " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-
-                /*
-                parent.setSelection(0); // Choose a Selection
-                parent.setSelection(1); // Miles to Kilometers
-                parent.setSelection(2); // Kilometers to Miles
-                parent.setSelection(3); // Inches to Centimeters
-                parent.setSelection(4); // Centimeters to Inches
-
-                 */
-                /*
-                Toast.makeText(parent.getContext(), "Conversion Selected: " + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-                break;
-                 */
-
-                /*
-                        MilesValueEditText.setText(milesToKiloVar);
-                        KilometersValueEditText.setText(kiloToMileVar);
-                        InchValueEditText.setText(inchToCentVar);
-                        CentValueEditText.setText(centToInchVar);
-                */
-
-                /*
-            case R.id.splitSpinner:
-                //Do another thing
-                Toast.makeText(this, "Option Selected: " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                break;
-
-                 */
         }
-
-
     }
 
     @Override
